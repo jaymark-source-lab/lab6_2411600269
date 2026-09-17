@@ -1,0 +1,231 @@
+:root {
+    --ft-teal-dark: #085054;
+    --ft-teal: #0b6e73;
+    --ft-teal-light: #14a3ad;
+    --ft-orange: #ff6b35;
+    --ft-orange-light: #ff7c4d;
+    --ft-purple: #7a4fd4;
+    --ft-amber: #f2b134;
+    --ft-red: #e0524d;
+    --ft-red-bg: #f9e9e8;
+    --ft-green: #1f9d55;
+    --ft-bg: #f4f7f7;
+    --ft-card-bg: #ffffff;
+    --ft-text: #1f2a2c;
+    --ft-text-muted: #6b7b7c;
+    --ft-border: #e7edee;
+}
+
+body {
+    background-color: var(--ft-bg);
+    color: var(--ft-text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.ft-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.ft-sidebar {
+    width: 240px;
+    background: var(--ft-card-bg);
+    border-right: 1px solid var(--ft-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.75rem;
+    flex-shrink: 0;
+}
+
+.ft-brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 0.5rem 0.75rem 1.25rem;
+    color: var(--ft-teal-dark);
+}
+
+.ft-brand i { color: var(--ft-teal); margin-right: 0.4rem; }
+
+.ft-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.ft-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    color: var(--ft-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.ft-nav-link:hover { background: var(--ft-bg); color: var(--ft-teal-dark); }
+
+.ft-nav-link.active {
+    background: var(--ft-teal);
+    color: #fff;
+}
+
+.ft-logout { margin-top: auto; }
+.ft-logout-btn { color: var(--ft-red); }
+.ft-logout-btn:hover { background: var(--ft-red-bg); color: var(--ft-red); }
+
+/* ---------- Topbar ---------- */
+.ft-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.ft-topbar {
+    background: var(--ft-teal-dark);
+    color: #fff;
+    padding: 0.9rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ft-topbar-title { font-weight: 700; font-size: 1.1rem; }
+.ft-topbar-right { display: flex; align-items: center; gap: 1rem; }
+.ft-date { opacity: 0.85; font-size: 0.9rem; }
+.ft-admin-btn { color: #fff; border: none; background: transparent; }
+.ft-admin-btn:hover { color: #fff; opacity: 0.85; }
+
+.ft-content { padding: 1.75rem; }
+
+/* ---------- Stat cards ---------- */
+.ft-stat-card {
+    background: var(--ft-card-bg);
+    border: 1px solid var(--ft-border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.ft-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.ft-stat-icon.teal { background: var(--ft-teal); }
+.ft-stat-icon.orange { background: var(--ft-orange); }
+.ft-stat-icon.teal-light { background: var(--ft-teal-light); }
+.ft-stat-icon.purple { background: var(--ft-purple); }
+
+.ft-stat-label { color: var(--ft-text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.ft-stat-value { font-size: 1.6rem; font-weight: 700; }
+.ft-stat-delta { font-size: 0.8rem; color: var(--ft-green); }
+.ft-stat-delta.negative { color: var(--ft-red); }
+
+/* ---------- Alert banner ---------- */
+.ft-alert-banner {
+    background: var(--ft-red-bg);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+}
+
+.ft-alert-banner i { color: var(--ft-red); font-size: 1.2rem; }
+.ft-alert-banner strong { display: block; margin-bottom: 0.35rem; }
+.ft-alert-banner ul { margin: 0; padding-left: 1.1rem; color: var(--ft-text); }
+
+/* ---------- Cards / panels ---------- */
+.ft-panel {
+    background: var(--ft-card-bg);
+    border: 1px solid var(--ft-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    height: 100%;
+}
+
+.ft-panel-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ---------- Filters ---------- */
+.ft-filter-bar {
+    background: var(--ft-card-bg);
+    border: 1px solid var(--ft-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
+}
+
+.ft-filter-group label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ft-text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.ft-status-pills .btn { border-radius: 999px; margin-right: 0.25rem; }
+.ft-status-pills .btn.active-pill {
+    background: var(--ft-teal);
+    border-color: var(--ft-teal);
+    color: #fff;
+}
+
+/* ---------- Table ---------- */
+.ft-table thead th {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ft-text-muted);
+    border-bottom: 1px solid var(--ft-border);
+}
+
+.ft-table td { vertical-align: middle; }
+
+.ft-badge { padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+.badge-completed { background: #e4f6ea; color: var(--ft-green); }
+.badge-missed { background: var(--ft-red-bg); color: var(--ft-red); }
+.badge-scheduled { background: #fdf1da; color: #b8790f; }
+
+.ft-search-wrap { position: relative; max-width: 320px; }
+.ft-search-wrap i {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--ft-text-muted);
+}
+.ft-search-wrap input { padding-left: 2.2rem; }
+
+.ft-btn-export {
+    background: var(--ft-teal);
+    border-color: var(--ft-teal);
+    color: #fff;
+}
+.ft-btn-export:hover { background: var(--ft-teal-dark); color: #fff; }
+
+.ft-btn-primary {
+    background: var(--ft-teal);
+    border-color: var(--ft-teal);
+    color: #fff;
+}
+.ft-btn-primary:hover { background: var(--ft-teal-dark); color: #fff; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+    .ft-sidebar { display: none; }
+    .ft-content { padding: 1.1rem; }
+}
