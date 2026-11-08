@@ -25,4 +25,26 @@ class InventoryTransactionObserver
 
         $product->update(['quantity' => $newQuantity]);
     }
+
+    // after a transaction is deleted: undo its stock change
+    public function deleted(InventoryTransaction $transaction): void
+    {
+        $product = Product::lockForUpdate()->find($transaction->product_id);
+
+        // product already removed, nothing to reverse
+        if (! $product) {
+            return;
+        }
+
+        $newQuantity = $product->quantity - $transaction->quantity;
+
+        // e.g. deleting a stock-in after those items were already sold
+        if ($newQuantity < 0) {
+            throw ValidationException::withMessages([
+                'quantity' => "Can't delete: {$product->name} stock would go below zero.",
+            ]);
+        }
+
+        $product->update(['quantity' => $newQuantity]);
+    }
 }
