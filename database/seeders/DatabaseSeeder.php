@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-
+        $this->call(GymStoreSeeder::class);
         $this->call(WorkoutSeeder::class);
         $this->call(ProductSeeder::class);
     }
