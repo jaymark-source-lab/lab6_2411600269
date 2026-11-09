@@ -229,3 +229,22 @@ body {
     .ft-sidebar { display: none; }
     .ft-content { padding: 1.1rem; }
 }
+
+/* ---------- Live update flash ---------- */
+.ft-flash { animation: ft-flash 0.8s ease; }
+
+@keyframes ft-flash {
+    0%   { color: var(--ft-orange); }
+    100% { color: var(--ft-text); }
+}
+
+.ft-live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ft-green);
+    margin-right: 0.35rem;
+}
+
+.ft-live-dot.error { background: var(--ft-red); }
