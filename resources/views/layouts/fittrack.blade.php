@@ -48,6 +48,50 @@
                 <div class="ft-topbar-title">@yield('title', 'Overview')</div>
                 <div class="ft-topbar-right">
                     <span class="ft-date">{{ now()->format('l, F j, Y') }}</span>
+
+                    @auth
+                        @php
+                            // bell data for the logged-in user
+                            $unreadCount = auth()->user()->unreadNotifications()->count();
+                            $recentNotifications = auth()->user()->notifications()->latest()->take(5)->get();
+                        @endphp
+
+                        {{-- notification bell --}}
+                        <div class="dropdown">
+                            <button class="btn ft-admin-btn position-relative" type="button" data-bs-toggle="dropdown" aria-label="Notifications">
+                                <i class="bi bi-bell-fill"></i>
+                                @if ($unreadCount)
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ $unreadCount }}
+                                    </span>
+                                @endif
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end p-0" style="width: 340px;">
+                                <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom">
+                                    <strong>Notifications</strong>
+                                    @if ($unreadCount)
+                                        <form method="POST" action="{{ route('notifications.readAll') }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-link btn-sm p-0 text-decoration-none">Mark all as read</button>
+                                        </form>
+                                    @endif
+                                </div>
+                                @forelse ($recentNotifications as $notification)
+                                    <form method="POST" action="{{ route('notifications.read', $notification->id) }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item py-2 border-bottom {{ $notification->read_at ? 'text-muted' : 'fw-semibold' }}" style="white-space: normal;">
+                                            <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                                            {{ $notification->data['message'] ?? 'Low stock alert' }}
+                                            <div class="small text-muted fw-normal">{{ $notification->created_at->diffForHumans() }}</div>
+                                        </button>
+                                    </form>
+                                @empty
+                                    <div class="px-3 py-3 text-muted small">No notifications yet.</div>
+                                @endforelse
+                            </div>
+                        </div>
+                    @endauth
+
                     <div class="dropdown">
                         <button class="btn ft-admin-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->name ?? 'Admin' }}
