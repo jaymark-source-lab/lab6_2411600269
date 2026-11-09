@@ -32,6 +32,12 @@ class InventoryApiController extends Controller
         return ProductResource::collection($products);
     }
 
+    // GET /api/products/{product}
+    public function product(Product $product)
+    {
+        return new ProductResource($product);
+    }
+
     // GET /api/transactions/recent
     public function recentTransactions()
     {

@@ -14,9 +14,16 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
         <h4 class="fw-bold mb-0">Stock Transactions</h4>
-        <a href="{{ route('transactions.create') }}" class="btn ft-btn-primary">
-            <i class="bi bi-plus-lg"></i> Record Transaction
-        </a>
+        <div class="d-flex gap-2">
+            @can('admin')
+                <a href="{{ route('adjustments.create') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-clipboard-check"></i> Stock Adjustment
+                </a>
+            @endcan
+            <a href="{{ route('transactions.create') }}" class="btn ft-btn-primary">
+                <i class="bi bi-plus-lg"></i> Record Transaction
+            </a>
+        </div>
     </div>
 
     {{-- errors, e.g. a delete that would make stock negative --}}
