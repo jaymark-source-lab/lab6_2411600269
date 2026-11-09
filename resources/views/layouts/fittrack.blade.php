@@ -28,8 +28,11 @@
                 <a href="{{ route('products.index') }}" class="ft-nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">
                     <i class="bi bi-box-seam"></i> Products
                 </a>
-                <a href="{{ route('transactions.index') }}" class="ft-nav-link {{ request()->routeIs('transactions.*') ? 'active' : '' }}">
+                <a href="{{ route('transactions.index') }}" class="ft-nav-link {{ request()->routeIs('transactions.*', 'adjustments.*') ? 'active' : '' }}">
                     <i class="bi bi-arrow-left-right"></i> Transactions
+                </a>
+                <a href="{{ route('reports.index') }}" class="ft-nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
+                    <i class="bi bi-file-earmark-bar-graph"></i> Reports
                 </a>
                 <a href="#" class="ft-nav-link"><i class="bi bi-egg-fried"></i> Nutrition</a>
                 <a href="#" class="ft-nav-link"><i class="bi bi-trophy"></i> Goals</a>

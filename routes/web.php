@@ -7,6 +7,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\InventoryTransactionController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StockAdjustmentController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Api\InventoryApiController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
     // stock adjustments (admin only, checked in the controller)
     Route::get('/adjustments/create', [StockAdjustmentController::class, 'create'])->name('adjustments.create');
     Route::post('/adjustments', [StockAdjustmentController::class, 'store'])->name('adjustments.store');
+
+    // inventory reports + CSV export
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/export', [ReportController::class, 'export'])->name('reports.export');
 
     // low stock notifications
     Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
